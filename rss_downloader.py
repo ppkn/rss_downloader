@@ -15,6 +15,11 @@ This script downloads the 10 most recent episodes from a given RSS feed URL.
 It supports various audio formats and creates organized directories for downloads.
 
 Usage:
+    ./rss_downloader.py <RSS_FEED_URL>
+    ./rss_downloader.py <RSS_FEED_URL> --output my_podcasts
+    ./rss_downloader.py <RSS_FEED_URL> --episodes 5
+
+    # Alternative using uv run:
     uv run rss_downloader.py <RSS_FEED_URL>
     uv run rss_downloader.py <RSS_FEED_URL> --output my_podcasts
     uv run rss_downloader.py <RSS_FEED_URL> --episodes 5
@@ -195,6 +200,11 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
+  ./rss_downloader.py https://feeds.example.com/podcast.xml
+  ./rss_downloader.py https://feeds.example.com/podcast.xml --output my_podcasts
+  ./rss_downloader.py https://feeds.example.com/podcast.xml --episodes 5
+  
+  # Alternative using uv run:
   uv run rss_downloader.py https://feeds.example.com/podcast.xml
   uv run rss_downloader.py https://feeds.example.com/podcast.xml --output my_podcasts
   uv run rss_downloader.py https://feeds.example.com/podcast.xml --episodes 5

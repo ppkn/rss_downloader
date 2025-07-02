@@ -12,6 +12,7 @@ A Python script to download the 10 most recent episodes from an RSS feed URL usi
 - Handles various RSS feed formats
 - Uses uv for automatic dependency management
 - No manual environment setup required
+- Can be run as an executable
 
 ## Prerequisites
 
@@ -20,7 +21,8 @@ A Python script to download the 10 most recent episodes from an RSS feed URL usi
 ## Installation
 
 1. Clone or download this repository
-2. No additional setup required! The script uses inline metadata to declare its dependencies
+2. Make the script executable: `chmod +x rss_downloader.py`. (This may not be necessary.)
+3. No additional setup required! The script uses inline metadata to declare its dependencies
 
 ## Usage
 
@@ -29,6 +31,11 @@ A Python script to download the 10 most recent episodes from an RSS feed URL usi
 Download the 10 most recent episodes from an RSS feed:
 
 ```bash
+./rss_downloader.py https://feeds.example.com/podcast.xml
+```
+
+Or using uv run (alternative method):
+```bash
 uv run rss_downloader.py https://feeds.example.com/podcast.xml
 ```
 
@@ -36,12 +43,12 @@ uv run rss_downloader.py https://feeds.example.com/podcast.xml
 
 Download to a custom directory:
 ```bash
-uv run rss_downloader.py https://feeds.example.com/podcast.xml --output my_podcasts
+./rss_downloader.py https://feeds.example.com/podcast.xml --output my_podcasts
 ```
 
 Download only 5 episodes:
 ```bash
-uv run rss_downloader.py https://feeds.example.com/podcast.xml --episodes 5
+./rss_downloader.py https://feeds.example.com/podcast.xml --episodes 5
 ```
 
 ### Command Line Options
@@ -54,13 +61,13 @@ uv run rss_downloader.py https://feeds.example.com/podcast.xml --episodes 5
 
 ```bash
 # Download from a popular podcast
-uv run rss_downloader.py https://feeds.npr.org/510313/podcast.xml
+./rss_downloader.py https://feeds.npr.org/510313/podcast.xml
 
 # Download to a specific folder
-uv run rss_downloader.py https://feeds.example.com/podcast.xml --output ~/Music/Podcasts
+./rss_downloader.py https://feeds.example.com/podcast.xml --output ~/Music/Podcasts
 
 # Download only the 3 most recent episodes
-uv run rss_downloader.py https://feeds.example.com/podcast.xml --episodes 3
+./rss_downloader.py https://feeds.example.com/podcast.xml --episodes 3
 ```
 
 ## How It Works
@@ -77,7 +84,7 @@ The script uses [uv's inline script metadata](https://docs.astral.sh/uv/guides/s
 # ///
 ```
 
-When you run `uv run rss_downloader.py`, uv automatically:
+The script has a shebang line `#!/usr/bin/env -S uv run --script` that allows it to be run as an executable. When you run `./rss_downloader.py`, uv automatically:
 1. Creates a virtual environment
 2. Installs the required dependencies
 3. Runs the script with those dependencies
